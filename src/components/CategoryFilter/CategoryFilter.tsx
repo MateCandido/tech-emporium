@@ -13,7 +13,7 @@ export const CategoryFilter = ({ categories, selectedCategory, onSelectCategory 
         className={!selectedCategory ? styles.active : ''}
         onClick={() => onSelectCategory(null)}
       >
-        Todos
+        All
       </button>
       {categories.map((category) => (
         <button

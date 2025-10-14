@@ -61,7 +61,7 @@ export const Home = () => {
         onSelectCategory={setSelectedCategory}
       />
       {isLoading ? (
-        <div style={{ textAlign: 'center', padding: '2rem' }}>Carregando produtos...</div>
+        <div style={{ textAlign: 'center', padding: '2rem' }}>Loading products...</div>
       ) : (
         <div className="product-gallery">
           {products.map((product) => (

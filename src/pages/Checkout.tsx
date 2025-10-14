@@ -21,7 +21,7 @@ export const Checkout = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault() 
     
-    console.log('Pedido enviado:', {
+    console.log('Request sent:', {
       customer: formData,
       items: items,
       total: items.reduce((acc, item) => acc + item.price * item.quantity, 0),
@@ -37,7 +37,7 @@ export const Checkout = () => {
       <h1>Finalizar Compra</h1>
       <form onSubmit={handleSubmit} className="checkout-form">
         <div className="form-group">
-          <label htmlFor="name">Nome Completo</label>
+          <label htmlFor="name">Name</label>
           <input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} required />
         </div>
         <div className="form-group">
@@ -45,10 +45,10 @@ export const Checkout = () => {
           <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required />
         </div>
         <div className="form-group">
-          <label htmlFor="address">Endereço</label>
+          <label htmlFor="address">Adress</label>
           <input type="text" id="address" name="address" value={formData.address} onChange={handleInputChange} required />
         </div>
-        <button type="submit" className="submit-button">Pagar Agora</button>
+        <button type="submit" className="submit-button">Pay Now</button>
       </form>
     </div>
   )

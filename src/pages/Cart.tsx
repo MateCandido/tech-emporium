@@ -10,8 +10,8 @@ export const Cart = () => {
   if (items.length === 0) {
     return (
       <div className="cart-empty">
-        <h2>Seu carrinho está vazio.</h2>
-        <Link to="/">Voltar para a loja</Link>
+        <h2>Your cart is empty.</h2>
+        <Link to="/">Back to the store</Link>
       </div>
     )
   }
@@ -25,7 +25,7 @@ export const Cart = () => {
             <img src={item.image} alt={item.title} className="cart-item-image" />
             <div className="cart-item-details">
               <h3>{item.title}</h3>
-              <p className="item-price">Preço Unitário: ${item.price.toFixed(2)}</p>
+              <p className="item-price">Unit Price: ${item.price.toFixed(2)}</p>
 
               <div className="quantity-controls">
                 <button onClick={() => decrementQuantity(item.id)} className="quantity-button">
@@ -39,18 +39,18 @@ export const Cart = () => {
 
             </div>
             <div className="cart-item-actions">
-              <p className="item-subtotal">Subtotal: ${(item.price * item.quantity).toFixed(2)}</p>
+              <p className="item-subtotal">Price: ${(item.price * item.quantity).toFixed(2)}</p>
               <button onClick={() => removeItem(item.id)} className="remove-button">
-                Remover
+                Remove
               </button>
             </div>
           </div>
         ))}
       </div>
       <div className="cart-summary">
-        <h2>Total: ${total.toFixed(2)}</h2>
+        <h2>Price: ${total.toFixed(2)}</h2>
         <Link to="/checkout" className="checkout-button">
-          Finalizar Compra
+        Checkout
         </Link>
     </div>
     </div>

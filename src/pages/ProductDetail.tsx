@@ -16,7 +16,7 @@ export const ProductDetail = () => {
   useEffect(() => {
     if (!id) {
       setIsLoading(false)
-      setError('ID do produto não fornecido.')
+      setError('Product ID not provided.')
       return
     }
 
@@ -28,7 +28,7 @@ export const ProductDetail = () => {
         const data = await getProductById(id)
         setProduct(data)
       } catch (err) {
-        setError('Produto não encontrado ou erro na API.')
+        setError('Product not found or API error.')
       } finally {
         setIsLoading(false)
       }
@@ -40,20 +40,20 @@ export const ProductDetail = () => {
   const handleAddToCart = () => {
     if (product) {
       addItem(product)
-      toast.success(`"${product.title}" foi adicionado ao carrinho!`)
+      toast.success(`"${product.title}" has been added to cart!`)
     }
   }
 
   if (isLoading) {
-    return <div className="product-detail-loading">Carregando produto...</div>
+    return <div className="product-detail-loading">Loading product...</div>
   }
 
   if (error) {
-    return <div className="product-detail-error">Erro: {error}</div>
+    return <div className="product-detail-error">Error: {error}</div>
   }
 
   if (!product) {
-    return <div className="product-detail-notfound">Produto não encontrado.</div>
+    return <div className="product-detail-notfound">Product not found.</div>
   }
 
   return (
@@ -64,11 +64,11 @@ export const ProductDetail = () => {
         <p className="product-detail-category">{product.category}</p>
         <p className="product-detail-description">{product.description}</p>
         <div className="product-detail-rating">
-          <span>Avaliação: {product.rating.rate} / 5 ({product.rating.count} avaliações)</span>
+          <span>Review: {product.rating.rate} / 5 ({product.rating.count} reviews)</span>
         </div>
         <p className="product-detail-price">${product.price.toFixed(2)}</p>
         <button className="add-to-cart-button" onClick={handleAddToCart}>
-          Adicionar ao Carrinho
+        Add to Cart
         </button>
       </div>
     </div>
