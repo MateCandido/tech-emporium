@@ -24,3 +24,23 @@ export const getProductById = async (id: string): Promise<IProduct> => {
     throw new Error('Não foi possível buscar o produto.')
   }
 }
+
+export const getCategories = async (): Promise<string[]> => {
+  try {
+    const response = await api.get<string[]>('/products/categories');
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar as categorias:', error);
+    throw new Error('Não foi possível buscar as categorias.');
+  }
+};
+
+export const getProductsByCategory = async (category: string): Promise<IProduct[]> => {
+  try {
+    const response = await api.get<IProduct[]>(`/products/category/${category}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Erro ao buscar produtos da categoria ${category}:`, error);
+    throw new Error('Não foi possível buscar os produtos da categoria.');
+  }
+};

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProductById } from '../services/api'
 import type { IProduct } from '../interfaces/Product'
+import toast from 'react-hot-toast';
 import { useCartStore } from '../hooks/useCartStore'
 import './ProductDetail.css'
 
@@ -39,7 +40,7 @@ export const ProductDetail = () => {
   const handleAddToCart = () => {
     if (product) {
       addItem(product)
-      alert(`"${product.title}" foi adicionado ao carrinho!`)
+      toast.success(`"${product.title}" foi adicionado ao carrinho!`)
     }
   }
 

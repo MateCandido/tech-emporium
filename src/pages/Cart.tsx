@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import './Cart.css'
 
 export const Cart = () => {
-  const { items, removeItem } = useCartStore()
+  const { items, removeItem, incrementQuantity, decrementQuantity } = useCartStore()
+
   const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0)
 
   if (items.length === 0) {
@@ -24,19 +25,34 @@ export const Cart = () => {
             <img src={item.image} alt={item.title} className="cart-item-image" />
             <div className="cart-item-details">
               <h3>{item.title}</h3>
-              <p>Quantidade: {item.quantity}</p>
-              <p>Preço: ${item.price.toFixed(2)}</p>
+              <p className="item-price">Preço Unitário: ${item.price.toFixed(2)}</p>
+
+              <div className="quantity-controls">
+                <button onClick={() => decrementQuantity(item.id)} className="quantity-button">
+                  -
+                </button>
+                <span>{item.quantity}</span>
+                <button onClick={() => incrementQuantity(item.id)} className="quantity-button">
+                  +
+                </button>
+              </div>
+
             </div>
-            <button onClick={() => removeItem(item.id)} className="remove-button">
-              Remover
-            </button>
+            <div className="cart-item-actions">
+              <p className="item-subtotal">Subtotal: ${(item.price * item.quantity).toFixed(2)}</p>
+              <button onClick={() => removeItem(item.id)} className="remove-button">
+                Remover
+              </button>
+            </div>
           </div>
         ))}
       </div>
       <div className="cart-summary">
         <h2>Total: ${total.toFixed(2)}</h2>
-        <button className="checkout-button">Finalizar Compra</button>
-      </div>
+        <Link to="/checkout" className="checkout-button">
+          Finalizar Compra
+        </Link>
+    </div>
     </div>
   )
 }
