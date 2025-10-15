@@ -1,10 +1,9 @@
-// src/pages/Home.tsx
-
 import { useState, useEffect } from 'react'
 import { getProducts, getCategories, getProductsByCategory } from '../services/api'
 import type { IProduct } from '../interfaces/Product'
 import { ProductCard } from '../components/ProductCard'
 import { CategoryFilter } from '../components/CategoryFilter/CategoryFilter'
+import { ProductSkeletonCard } from './ProductSkeletonCard/ProductSkeletonCard'
 import './Home.css'
 
 export const Home = () => {
@@ -21,7 +20,7 @@ export const Home = () => {
         const data = await getCategories()
         setCategories(data)
       } catch (err) {
-        console.error("Falha ao buscar categorias:", err)
+        console.error("Failed to fetch categories:", err)
       }
     }
     fetchCategories()
@@ -40,7 +39,7 @@ export const Home = () => {
         }
         setProducts(data)
       } catch (err) {
-        setError('Não foi possível carregar os produtos.')
+        setError('Unable to load products.')
       } finally {
         setIsLoading(false)
       }
@@ -50,7 +49,7 @@ export const Home = () => {
   }, [selectedCategory]) 
 
   if (error) {
-    return <div style={{ textAlign: 'center', padding: '2rem', color: 'red' }}>Erro: {error}</div>
+    return <div style={{ textAlign: 'center', padding: '2rem', color: 'red' }}>Error: {error}</div>
   }
 
   return (
@@ -61,7 +60,11 @@ export const Home = () => {
         onSelectCategory={setSelectedCategory}
       />
       {isLoading ? (
-        <div style={{ textAlign: 'center', padding: '2rem' }}>Loading products...</div>
+                <div className="product-gallery">
+                {Array.from({ length: 8 }).map((_, index) => (
+                  <ProductSkeletonCard key={index} />
+                ))}
+              </div>
       ) : (
         <div className="product-gallery">
           {products.map((product) => (

@@ -1,0 +1,45 @@
+.skeletonCard {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #fff;
+}
+
+.skeletonImage {
+    height: 150px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.skeletonText {
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.skeletonTextShort {
+    height: 20px;
+    width: 60%;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: #e0e0e0;
+    }
+    50% {
+        background-color: #f0f0f0;
+    }
+    100% {
+        background-color: #e0e0e0;
+    }
+}
+
+.skeletonImage,
+.skeletonText,
+.skeletonTextShort {
+    animation: pulse 1.5s infinite ease-in-out;
+}
